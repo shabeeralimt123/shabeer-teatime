@@ -60,6 +60,7 @@ class MyDatabase extends _$MyDatabase {
       //ParticularsCompanion(unit: Value(unit)),
     );
   }
+ 
 
   Future deleteAll() {
     return (delete(particulars)).go();

@@ -12,19 +12,22 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.0
-  flutter_bloc: ^6.1.2
-  shared_preferences: ^0.5.12+4
-  global_configuration: ^1.6.0
-  flutter_spinkit: ^4.1.2+1
-  google_fonts: ^1.1.2
-  http: ^0.12.2
-  moor_flutter: ^3.1.0
-  moor: ^3.0.0
-  sqlite3_flutter_libs: ^0.4.0+1
-  path_provider: ^1.6.27
-  path: ^1.7.0
-  permission_handler: ^5.1.0+2
+  cupertino_icons: 
+  flutter_bloc: 
+  shared_preferences: 
+  global_configuration: 
+  flutter_spinkit: 
+  google_fonts: 
+  http: 
+  moor_flutter: 
+  moor: 
+  sqlite3_flutter_libs: 
+  path_provider: 
+  path: 
+  permission_handler: 
+  provider: 
+  
+  
 
 
 dev_dependencies:

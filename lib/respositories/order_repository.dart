@@ -10,6 +10,7 @@ import 'package:teatime/models/order_item_detail_model.dart';
 import 'package:teatime/models/order_model.dart';
 
 class OrderRepository{
+ 
   Future<bool> postOrder(List<Map<String,String>> items) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String b = preferences.getString("BRANCH");
@@ -17,7 +18,7 @@ class OrderRepository{
       BranchModel branch  = BranchModel.fromJson(json.decode(b));
       print({
         'branch':branch.id.toString(),
-        'items':items
+        'items':json.encode(items)
       });
       print(GlobalConfiguration().get("api_base_url")+"post_order");
       http.Response response= await http.post(GlobalConfiguration().get("api_base_url")+"post_order",body:{

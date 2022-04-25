@@ -11,24 +11,30 @@ part 'products_state.dart';
 class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit() : super(ProductsInitial());
 
-
   getProducts({search}) async {
     emit(ProductsInitial());
-    try{
+    try {
       final data = await ProductRepository().getProducts(search: search);
       emit(ProductsLoaded(data));
-    }catch(ex){
-      if(ex is ErrorModel){
+    } catch (ex) {
+      if (ex is ErrorModel) {
         emit(ProductsError(ex.message));
-      }else if (ex is FormatException){
+      } else if (ex is FormatException) {
         emit(ProductsError("Invalid Response Format"));
-      }else if(ex is SocketException || ex is HttpException){
-        emit(ProductsError("It looks like you don't have a stable internet connection"));
+      } else if (ex is SocketException || ex is HttpException) {
+        emit(ProductsError(
+            "It looks like you don't have a stable internet connection"));
       }
     }
   }
 
-  emptyProducts(){
+  products({search}) async {
+    final data = await ProductRepository().getProducts(search: search);
+
+    emit(ProductsLoaded(data));
+  }
+
+  emptyProducts() {
     emit(ProductsInitial());
   }
 }

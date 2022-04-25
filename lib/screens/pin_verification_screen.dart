@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teatime/models/branch.dart';
 import 'package:teatime/resources/theme_resources.dart';
-import 'package:teatime/screens/home_screen.dart';
+import 'package:teatime/screens/dashboardScreen.dart';
+
 
 class PinVerificationScreen extends StatefulWidget {
   final BranchModel branch;
@@ -161,7 +162,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
       if(pinCode == widget.branch.pin){
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.setString('BRANCH', json.encode(widget.branch.toJson()));
-        Navigator.pushAndRemoveUntil(context, HomeScreen.route(widget.branch),(route)=>false);
+        Navigator.pushAndRemoveUntil(context, Dashboard.route(widget.branch),(route)=>false);
       }else{
         setState(() {
           errorString = "Invalid Passcode";
