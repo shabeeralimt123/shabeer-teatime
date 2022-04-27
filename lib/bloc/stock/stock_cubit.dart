@@ -23,12 +23,9 @@ class StockCubit extends Cubit<StockState> {
     BuildContext context,
     ProductModel productModel,
     double ctnqty,
-    double ctnrate,
-    double ctntotal,
+    
     double pcsqty,
-    double pcsrate,
-    double pcstotal,
-    double grandtotal,
+   
     int id,
     String productName,
   ) async {
@@ -40,12 +37,9 @@ class StockCubit extends Cubit<StockState> {
         product: Value(productModel.id),
         supplier: Value(productModel.supplier),
         ctnqty: Value(ctnqty.toString()),
-        ctnrate: Value(ctnrate.toString()),
-        ctntotal: Value(ctntotal.toString()),
+       
         pcsqty: Value(pcsqty.toString()),
-        pcsrate: Value(pcsrate.toString()),
-        pcstotal: Value(pcstotal.toString()),
-        grandtotal: Value(grandtotal.toString()),
+        
         unit: Value(id),
         unitname: Value(productName),
       ));
@@ -62,12 +56,9 @@ class StockCubit extends Cubit<StockState> {
     BuildContext context,
     int id,
     double ctnqty,
-    double ctnrate,
-    double ctntotal,
+   
     double pcsqty,
-    double pcsrate,
-    double pcstotal,
-    double grandtotal,
+    
   ) async {
     emit(UpdatingStock());
     try {
@@ -75,12 +66,9 @@ class StockCubit extends Cubit<StockState> {
       await db.updateStock(
           id,
           ctnqty.toString(),
-          ctnrate.toString(),
-          ctntotal.toString(),
+          
           pcsqty.toString(),
-          pcsrate.toString(),
-          pcstotal.toString(),
-          grandtotal.toString());
+          );
       emit(UpdatedStock());
     } catch (ex) {
       print(ex.toString());
@@ -112,12 +100,9 @@ class StockCubit extends Cubit<StockState> {
           d.add({
             'item_id': element.product,
             'ctn_qty': double.tryParse(element.ctnqty),
-            'ctn_price': double.tryParse(element.ctnrate),
-            'ctn_total': double.tryParse(element.ctntotal),
+           
             'pcs_qty': double.tryParse(element.pcsqty),
-            'pcs_rate': double.tryParse(element.pcsrate),
-            'pcs_total': double.tryParse(element.pcstotal),
-            'grandtotal': double.tryParse(element.grandtotal),
+           
           });
         });
 

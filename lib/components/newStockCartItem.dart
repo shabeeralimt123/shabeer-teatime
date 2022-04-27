@@ -18,12 +18,12 @@ class NewStockCartItem extends StatefulWidget {
 
 class _NewStockCartItemState extends State<NewStockCartItem> {
   TextEditingController utnqtyController = TextEditingController();
-  TextEditingController utnrateController = TextEditingController();
-  TextEditingController utntotalController = TextEditingController();
+  // TextEditingController utnrateController = TextEditingController();
+  // TextEditingController utntotalController = TextEditingController();
   TextEditingController pcsqtyController = TextEditingController();
-  TextEditingController pcsrateController = TextEditingController();
-  TextEditingController pcstotalController = TextEditingController();
-  TextEditingController grandtotalController = TextEditingController();
+  // TextEditingController pcsrateController = TextEditingController();
+  // TextEditingController pcstotalController = TextEditingController();
+  // TextEditingController grandtotalController = TextEditingController();
   double a = 0;
   double b = 0;
   double c = 0;
@@ -31,16 +31,14 @@ class _NewStockCartItemState extends State<NewStockCartItem> {
 
   @override
   void initState() {
-   
-
     super.initState();
     utnqtyController.text = widget.item.ctnqty;
-    utnrateController.text = widget.item.ctnrate;
-    utntotalController.text = widget.item.ctntotal;
+    // utnrateController.text = widget.item.ctnrate;
+    // utntotalController.text = widget.item.ctntotal;
     pcsqtyController.text = widget.item.pcsqty;
-    pcsrateController.text = widget.item.pcsrate;
-    pcstotalController.text = widget.item.pcstotal;
-    grandtotalController.text = widget.item.grandtotal;
+    // pcsrateController.text = widget.item.pcsrate;
+    // pcstotalController.text = widget.item.pcstotal;
+    // grandtotalController.text = widget.item.grandtotal;
   }
 
   @override
@@ -62,264 +60,141 @@ class _NewStockCartItemState extends State<NewStockCartItem> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * .005,
                     ),
-                     Row(
-                            children: [
-                              Text(
-                                "Qty (ctn)  ",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
+                    Row(
+                      children: [
+                        Text(
+                          "Qty (ctn)  ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(),
+                          height: MediaQuery.of(context).size.height * .04,
+                          width: MediaQuery.of(context).size.width * .75,
+                          child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9.]")),
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                try {
+                                  final text = newValue.text;
+                                  if (text.isNotEmpty) double.parse(text);
+                                  return newValue;
+                                } catch (e) {}
+                                return oldValue;
+                              }),
                             ],
+                            onChanged: (value) {
+                              // final x = double.tryParse(value);
+
+                              // setState(() {
+                              // a = double.parse(utnqtyController.text) ?? 0;
+                              // b = double.parse(utnrateController.text) ?? 0;
+                              // c = double.parse(pcsqtyController.text);
+                              // d = double.parse(pcsrateController.text);
+                              // a = x ??
+                              // widget
+                              // .item.ctnqty; // handle null and String
+
+                              //   utntotalController.text =
+                              //       (a * b).toStringAsFixed(2);
+                              //   grandtotalController.text =
+                              //       ((a * b) + (c * d)).toStringAsFixed(2);
+                              // });
+                            },
+                            controller: utnqtyController,
+                            keyboardType: TextInputType.numberWithOptions(
+                                decimal: true, signed: false),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Qty",
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4)),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(),
-                                height:
-                                    MediaQuery.of(context).size.height * .04,
-                                width: MediaQuery.of(context).size.width * .17,
-                                child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  onChanged: (value) {
-                                    final x = double.tryParse(value);
-
-                                    setState(() {
-                                      a = x ?? 0; // handle null and String
-
-                                      utntotalController.text =
-                                          (a * b).toStringAsFixed(2);
-                                      grandtotalController.text =
-                                          ((a * b) + (c * d))
-                                              .toStringAsFixed(2);
-                                    });
-                                  },
-                                  controller: utnqtyController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: "Qty",
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4)),
-                                ),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .006),
-                              Container(
-                                decoration: BoxDecoration(),
-                                height:
-                                    MediaQuery.of(context).size.height * .04,
-                                width: MediaQuery.of(context).size.width * .26,
-                                child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  onChanged: (value) {
-                                    final x = double.tryParse(value);
-
-                                    setState(() {
-                                      b = x ?? 0;
-
-                                      utntotalController.text =
-                                          (a * b).toStringAsFixed(2);
-                                      grandtotalController.text =
-                                          ((a * b) + (c * d))
-                                              .toStringAsFixed(2);
-                                    });
-                                  },
-                                  controller: utnrateController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: "Price",
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4)),
-                                ),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .006),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 4),
-                                child: Container(
-                                  decoration: BoxDecoration(),
-                                  height:
-                                      MediaQuery.of(context).size.height * .04,
-                                  width:
-                                      MediaQuery.of(context).size.width * .30,
-                                  child: TextFormField(
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    readOnly: true,
-                                    controller: utntotalController,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        hintText: "Total",
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4)),
-                                  ),
-                                ),
-                              ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Qty (pcs)  ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(),
+                          height: MediaQuery.of(context).size.height * .04,
+                          width: MediaQuery.of(context).size.width * .75,
+                          child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9.]")),
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                try {
+                                  final text = newValue.text;
+                                  if (text.isNotEmpty) double.parse(text);
+                                  return newValue;
+                                } catch (e) {}
+                                return oldValue;
+                              }),
                             ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "Qty (pcs)  ",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(),
-                                height:
-                                    MediaQuery.of(context).size.height * .04,
-                                width: MediaQuery.of(context).size.width * .17,
-                                child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  onChanged: (value) {
-                                    final y = double.tryParse(value);
+                            onChanged: (value) {
+                              // final y = double.tryParse(value);
 
-                                    setState(() {
-                                      c = y ?? 0; // handle null and String
+                              //   setState(() {
+                              //  a = double.parse(utnqtyController.text) ?? 0;
+                              //     b = double.parse(utnrateController.text) ?? 0;
+                              //     c = double.parse(pcsqtyController.text);
+                              //     d = double.parse(pcsrateController.text);
 
-                                      pcstotalController.text =
-                                          (c * d).toStringAsFixed(2);
-                                      grandtotalController.text =
-                                          ((a * b) + (c * d))
-                                              .toStringAsFixed(2);
-                                    });
-                                  },
-                                  controller: pcsqtyController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: "Qty",
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4)),
-                                ),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .006),
-                              Container(
-                                decoration: BoxDecoration(),
-                                height:
-                                    MediaQuery.of(context).size.height * .04,
-                                width: MediaQuery.of(context).size.width * .26,
-                                child: TextFormField(
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  onChanged: (value) {
-                                    final y = double.tryParse(value);
+                              // c = y ??
+                              //     widget
+                              //         .item.pcsqty; // handle null and String
 
-                                    setState(() {
-                                      d = y ?? 0;
-
-                                      pcstotalController.text =
-                                          (c * d).toStringAsFixed(2);
-                                      grandtotalController.text =
-                                          ((c * d) + (a * b))
-                                              .toStringAsFixed(2);
-                                    });
-                                  },
-                                  controller: pcsrateController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: "Price",
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4)),
-                                ),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .006),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 4),
-                                child: Container(
-                                  decoration: BoxDecoration(),
-                                  height:
-                                      MediaQuery.of(context).size.height * .04,
-                                  width:
-                                      MediaQuery.of(context).size.width * .30,
-                                  child: TextFormField(
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    readOnly: true,
-                                    controller: pcstotalController,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        hintText: "total",
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4)),
-                                  ),
-                                ),
-                              ),
-                            ],
+                              //   pcstotalController.text =
+                              //       (c * d).toStringAsFixed(2);
+                              //   grandtotalController.text =
+                              //       ((a * b) + (c * d)).toStringAsFixed(2);
+                              // });
+                            },
+                            controller: pcsqtyController,
+                            keyboardType: TextInputType.numberWithOptions(
+                                decimal: true, signed: false),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Qty",
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4)),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "Grand total",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * .075,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 4),
-                                child: Container(
-                                  decoration: BoxDecoration(),
-                                  height:
-                                      MediaQuery.of(context).size.height * .04,
-                                  width:
-                                      MediaQuery.of(context).size.width * .48,
-                                  child: TextFormField(
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    readOnly: true,
-                                    controller: grandtotalController,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        hintText: "grand total",
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4)),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .009,
-                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .009,
+                    ),
                     Row(
                       children: [
                         TextButton(
@@ -341,13 +216,15 @@ class _NewStockCartItemState extends State<NewStockCartItem> {
                                       .updateStockItem(
                                     context,
                                     widget.item.id,
-                                    double.tryParse(utnqtyController.text),
-                                    double.tryParse(utntotalController.text),
-                                    double.tryParse(utnrateController.text),
-                                    double.tryParse(pcsqtyController.text),
-                                    double.tryParse(pcsrateController.text),
-                                    double.tryParse(pcstotalController.text),
-                                    double.tryParse(grandtotalController.text),
+                                    double.tryParse(utnqtyController.text) ??
+                                        0.00,
+                                    // double.tryParse(utnrateController.text),
+                                    // double.tryParse(utntotalController.text),
+                                    double.tryParse(pcsqtyController.text) ??
+                                        0.00,
+                                    // double.tryParse(pcsrateController.text),
+                                    // double.tryParse(pcstotalController.text),
+                                    // double.tryParse(grandtotalController.text),
                                   );
                                   Navigator.pop(context);
                                 } catch (ex) {}

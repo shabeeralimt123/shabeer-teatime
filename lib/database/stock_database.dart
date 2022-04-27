@@ -12,12 +12,9 @@ class Stock extends Table {
   IntColumn get product => integer()();
   TextColumn get name => text()();
   TextColumn get ctnqty => text()();
-  TextColumn get ctnrate => text()();
-  TextColumn get ctntotal => text()();
+  TextColumn get ctnrate => text().nullable()();
+
   TextColumn get pcsqty => text()();
-  TextColumn get pcsrate => text()();
-  TextColumn get pcstotal => text()();
-  TextColumn get grandtotal => text()();
   IntColumn get supplier => integer()();
   IntColumn get unit => integer()();
   TextColumn get unitname => text()();
@@ -57,29 +54,19 @@ class Stockdatabase extends _$Stockdatabase {
   Future deleteStockItem(int id) {
     return (delete(stock)..where((e) => e.id.equals(id))).go();
   }
-   
+
   Future updateStock(
     id,
     ctnqty,
-    ctnrate,
-    ctntotal,
     pcsqty,
-    pcsrate,
-    pcstotal,
-    grandtotal,
   ) {
     print(ctnqty.runtimeType);
     print(pcsqty.runtimeType);
-    print(grandtotal.runtimeType);
+
     return (update(stock)..where((t) => t.id.equals(id))).write(
       StockCompanion(
         ctnqty: Value(ctnqty),
-        ctnrate: Value(ctnrate),
-        ctntotal: Value(ctntotal),
         pcsqty: Value(pcsqty),
-        pcsrate: Value(pcsrate),
-        pcstotal: Value(pcstotal),
-        grandtotal: Value(grandtotal),
       ),
 
       //ParticularsCompanion(unit: Value(unit)),
