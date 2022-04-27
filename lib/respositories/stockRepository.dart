@@ -19,10 +19,10 @@ class StockRepository {
       print(
        json.encode({'items':items})
       );
-      print(GlobalConfiguration().get("api_base_url") + "post_stocknew?branch_id=${branch.id}");
+      print(GlobalConfiguration().get("api_base_url") + "post_stock?branch_id=${branch.id}");
       http.Response response = await http.post(
           GlobalConfiguration().get("api_base_url") +
-              "post_stocknew?branch_id=${branch.id}",
+              "post_stock?branch_id=${branch.id}",
           body: 
              json.encode({'items':items})
           );

@@ -13,7 +13,7 @@ import 'bloc/products/products_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GlobalConfiguration().loadFromAsset("configurations");
+  await GlobalConfiguration().loadFromAsset("test_configurations");
   runApp(RepositoryProvider(
       create: (context) => MyDatabase(),
       child: RepositoryProvider(
